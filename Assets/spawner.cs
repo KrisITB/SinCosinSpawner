@@ -30,7 +30,7 @@ public class spawner : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private int endLine = 1000;
+    private int endLine = 100000;
     private int current = 0;
     private int i = 0;
     void Update() {
@@ -40,11 +40,12 @@ public class spawner : MonoBehaviour {
 
         } else {
             i = 1;
-            if (current < endLine * (1 / Mathf.Pow(scale, 2)))
+            if (current < endLine)// * (1 / Mathf.Pow(scale, 2)))
             {
                 cubeInst.transform.localScale = new Vector3(scale, scale, scale);
                 for (int j = 0; j < 2*SpawnSpeed; j++)
                 {
+                    //Debug.LogWarning("SpawnSpeed on update : " + SpawnSpeed);
                     spawnuj(current);
                     current++;
                 }
@@ -88,8 +89,8 @@ public class spawner : MonoBehaviour {
     {
         scale2 = scale;
         floor++;
-        xSin = Mathf.Sin(floor * scale2 * Condensation);
-        dim2 = Mathf.Cos(floor * scale2 * Condensation);
+        xSin = Mathf.Sin(floor * scale2 / Mathf.Pow(Condensation,2));
+        dim2 = Mathf.Cos(floor * scale2 / Mathf.Pow(Condensation, 2));
         //newTargetSpawn = new Vector3(xSin*scale, floor*scale, dim2*scale);
         newTargetSpawn = new Vector3(xSin * xAxisShift, lastSpawn.y + floor * scale * spawnhight * 0.001f, dim2 * zAxisShift);
         //Debug.Log(spawnhight); // floor * scale * 
@@ -173,11 +174,14 @@ public class spawner : MonoBehaviour {
 
     public void SpawnerShifter(float spawnShifter)
     {
-        spawnShifter = Mathf.Pow(spawnShifter, 2);
+        Debug.Log(Mathf.CeilToInt(spawnShifter));
+        //spawnShifter = Mathf.CeilToInt(spawnShifter) * Mathf.Pow(spawnShifter, 2);
         if (spawnSpeed != spawnShifter)
         {
-            spawnSpeed = Mathf.CeilToInt(Mathf.Lerp(spawnSpeed, spawnShifter, .1f));
+            //Debug.LogError(spawnShifter);
+            //spawnSpeed = Mathf.CeilToInt(Mathf.Lerp(spawnSpeed, spawnShifter, .1f));
             //return answer;
+            spawnSpeed = Mathf.CeilToInt(spawnShifter);
         }
         else
         {

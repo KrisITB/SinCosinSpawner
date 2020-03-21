@@ -759,7 +759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -213, y: 0}
+  m_AnchoredPosition: {x: -213, y: -155}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &625565360
@@ -1155,7 +1155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -148}
+  m_AnchoredPosition: {x: 58, y: -148}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734049738
@@ -1198,9 +1198,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1435078211}
   m_Direction: 0
   m_MinValue: 0.01
-  m_MaxValue: 1
+  m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 0.02
+  m_Value: 0.1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3313,7 +3313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46e028ce5f399f4eb65563f9487a963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeInst: {fileID: 1932160289439576, guid: 5201d996e37786f4f996b392bdd0af77, type: 2}
+  cubeInst: {fileID: 1525225254941752, guid: 2736a48935ab97a4eb2f08b48c7363d8, type: 2}
   tata: {fileID: 321665785}
   scale: 0.1
   c1: {r: 0.15181662, g: 0.68862313, b: 0.7647059, a: 0}
@@ -3393,7 +3393,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 2089868245}
   m_HandleRect: {fileID: 549817676}
   m_Direction: 0
-  m_MinValue: 0.01
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.2
@@ -3657,10 +3657,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 875793144}
   m_HandleRect: {fileID: 1126697295}
   m_Direction: 0
-  m_MinValue: 0.01
-  m_MaxValue: 10
+  m_MinValue: 0.001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
