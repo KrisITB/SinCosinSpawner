@@ -20,6 +20,11 @@ public class menu : MonoBehaviour {
         camera1.GetComponent<flyUp>().move = !camera1.GetComponent<flyUp>().move;
     }
 
+    public void moveSpeed(float change)
+    {
+        camera1.GetComponent<flyUp>().SpeedConst += change;
+    }
+
     public void RollSwitch()
     {
         camera1.GetComponent<flyUp>().cameraRoll = !camera1.GetComponent<flyUp>().cameraRoll;

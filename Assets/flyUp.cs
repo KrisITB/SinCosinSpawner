@@ -6,13 +6,29 @@ public class flyUp : MonoBehaviour {
     public bool move;
     public float scale = 0.01f;
     public bool cameraRoll;
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private float speedConst;
+    // Use this for initialization
+    void Start () {
+        speedConst = 0f;
+
+    }
     int i = 0;
-	// Update is called once per frame
-	void Update () {
+
+    public float SpeedConst
+    {
+        get
+        {
+            return speedConst;
+        }
+
+        set
+        {
+            speedConst = value;
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (i < 0)
         {
             i++;
@@ -23,7 +39,7 @@ public class flyUp : MonoBehaviour {
             if (move)
             {
                 //Debug.Log("WOW");
-                float y = gameObject.transform.position.y + scale*2.5f;// + Mathf.Pow(scale, 2);
+                float y = gameObject.transform.position.y + Mathf.Pow(speedConst, 3) ;//scale*2.5f;// + Mathf.Pow(scale, 2);
                 this.gameObject.transform.position = new Vector3(gameObject.transform.position.x, y, gameObject.transform.position.z);
             }
             if (cameraRoll)

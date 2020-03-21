@@ -14,6 +14,8 @@ public class spawner : MonoBehaviour {
     public Color c1;
     private float xAxisShift;
     private float zAxisShift;
+    private int spawnSpeed;
+    private float condensation;
 
 
     // Use this for initialization
@@ -22,6 +24,9 @@ public class spawner : MonoBehaviour {
         lastSpawn = new Vector3(0, 0, 0);
         xAxisShift = 1;
         zAxisShift = 1;
+        scale = 0.1f;
+        spawnSpeed = 1;
+        condensation = 1;
     }
 
     // Update is called once per frame
@@ -38,7 +43,7 @@ public class spawner : MonoBehaviour {
             if (current < endLine * (1 / Mathf.Pow(scale, 2)))
             {
                 cubeInst.transform.localScale = new Vector3(scale, scale, scale);
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 2*SpawnSpeed; j++)
                 {
                     spawnuj(current);
                     current++;
@@ -52,12 +57,39 @@ public class spawner : MonoBehaviour {
     private float dim2;
     private float rotationY;
     private float scale2 = 0.2f;
+
+    public int SpawnSpeed
+    {
+        get
+        {
+            return spawnSpeed;
+        }
+
+        set
+        {
+            spawnSpeed = value;
+        }
+    }
+
+    public float Condensation
+    {
+        get
+        {
+            return condensation;
+        }
+
+        set
+        {
+            condensation = value;
+        }
+    }
+
     private void spawnuj(int c)
     {
         scale2 = scale;
         floor++;
-        xSin = Mathf.Sin(floor * scale2);
-        dim2 = Mathf.Cos(floor * scale2);
+        xSin = Mathf.Sin(floor * scale2 * Condensation);
+        dim2 = Mathf.Cos(floor * scale2 * Condensation);
         //newTargetSpawn = new Vector3(xSin*scale, floor*scale, dim2*scale);
         newTargetSpawn = new Vector3(xSin * xAxisShift, lastSpawn.y + floor * scale * spawnhight * 0.001f, dim2 * zAxisShift);
         //Debug.Log(spawnhight); // floor * scale * 
@@ -100,7 +132,7 @@ public class spawner : MonoBehaviour {
         bool answer = true;
         if (newScale != scale)
         {
-            scale = newScale;
+            scale = Mathf.Lerp(scale, newScale, .1f);
             //return answer;
         }
         else
@@ -115,7 +147,10 @@ public class spawner : MonoBehaviour {
 
     public void XaxisShifter(float xShifter)
     {
-        xAxisShift = xShifter;
+        if (xAxisShift != xShifter)
+        {
+            xAxisShift = Mathf.Lerp(xShifter, xAxisShift, 0.01f);
+        }
     }
 
     public float XaxisDisplay()
@@ -125,11 +160,38 @@ public class spawner : MonoBehaviour {
 
     public void ZaxisShifter(float zShifter)
     {
-        zAxisShift = zShifter;
+        if (zAxisShift != zShifter)
+        {
+            zAxisShift = Mathf.Lerp(zShifter, zAxisShift, 0.01f);
+        }
     }
 
     public float ZaxisDisplay()
     {
         return zAxisShift;
+    }
+
+    public void SpawnerShifter(float spawnShifter)
+    {
+        spawnShifter = Mathf.Pow(spawnShifter, 2);
+        if (spawnSpeed != spawnShifter)
+        {
+            spawnSpeed = Mathf.CeilToInt(Mathf.Lerp(spawnSpeed, spawnShifter, .1f));
+            //return answer;
+        }
+        else
+        {
+            //return !answer;
+        }
+    }
+
+    public void CondensationShifter(float condensatorShifter)
+    {
+        //condensatorShifter = Mathf.Pow(condensatorShifter, 2);
+        if (condensation != condensatorShifter)
+        {
+            condensation = Mathf.Lerp(condensatorShifter, condensatorShifter, .01f);
+            //return answer;
+        }
     }
 }
